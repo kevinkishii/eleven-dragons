@@ -1,0 +1,32 @@
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+}
+
+.modalContainer {
+  height: 30rem;
+  width: 30rem;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: black 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  padding: 0.5rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  place-content: space-between;
+  align-items: center;
+  background-color: cyan;
+  border-radius: 12px 12px 0 0;
+}
+
+.modalBody {
+  padding: 3rem;
+}

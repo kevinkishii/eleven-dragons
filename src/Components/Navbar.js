@@ -11,7 +11,7 @@ const Navbar = () => {
         <ul>
           <li>
             <Link className="link" to="/all">
-              Todos
+              Usuarios
             </Link>
           </li>
         </ul>

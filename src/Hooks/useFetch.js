@@ -14,5 +14,5 @@ export const useFetch = (url) => {
   useEffect(() => {
     getItems()
   }, [url, getItems])
-  return { loading, items }
+  return { loading, items, setItems }
 }

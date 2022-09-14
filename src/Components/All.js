@@ -1,34 +1,49 @@
 import React from "react"
 import { useState } from "react"
 import { useFetch } from "../Hooks/useFetch"
-import { motion, layout } from "framer-motion"
+import { motion } from "framer-motion"
+
+import Modal from "./Modal"
 
 const url = "https://gorest.co.in/public/v2/users"
 
 const All = () => {
   const [search, setSearch] = useState("")
   const [activeFilter, setActiveFilter] = useState("all")
-  const { loading, items } = useFetch(url)
+  const { loading, items, setItems } = useFetch(url)
+  const [openModal, setOpenModal] = useState(false)
+  console.log(items)
 
   let filteredResponse = items
     .filter((person) => {
-      if (search == "") {
+      if (search === "") {
         return person
       } else if (person.name.toLowerCase().includes(search.toLowerCase())) {
         return person
+      } else {
+        return null
       }
     })
     .filter((person) => {
-      if (activeFilter == "all") {
+      if (activeFilter === "all") {
         return person
-      } else if (activeFilter == person.status) {
+      } else if (activeFilter === person.status) {
         return person
+      } else {
+        return null
       }
     })
 
   return (
     <>
       <div className="hero">
+        {openModal && (
+          <Modal
+            closeModal={setOpenModal}
+            addNewItem={setItems}
+            currentItems={items}
+          />
+        )}
         <div className="displayHeader">
           <h1>Todos os usuários</h1>
           <div>
@@ -48,6 +63,13 @@ const All = () => {
               <option value="active">Ativo</option>
               <option value="inactive">Inativo</option>
             </select>
+            <button
+              onClick={() => {
+                setOpenModal(true)
+              }}
+            >
+              Adicionar
+            </button>
           </div>
         </div>
         {loading ? (
