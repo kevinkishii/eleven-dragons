@@ -11,7 +11,7 @@ const Navbar = () => {
             <Link to="/all">Todos</Link>
           </li>
           <li>
-            <Link to="/all">incluir</Link>
+            <Link to="/include">incluir</Link>
           </li>
         </ul>
       </header>
