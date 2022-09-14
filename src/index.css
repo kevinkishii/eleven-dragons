@@ -1,13 +1,76 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat";
+  min-height: 100%;
+  position: relative;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+header {
+  background-color: black;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  place-content: space-between;
+  align-items: center;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  list-style-type: none;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+div.hero {
+  margin: 5rem;
+}
+
+.centerTitle {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.displayHeader {
+  display: flex;
+  flex-direction: row;
+  place-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.displayHeader input {
+  margin-right: 2rem;
+}
+
+.itemsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+}
+
+.item {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: rgb(174, 122, 223);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
