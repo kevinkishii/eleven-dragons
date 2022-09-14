@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react"
 import "./Modal.css"
+import { schema } from "./validation"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { useForm } from "react-hook-form"
+import * as yup from "yup"
 
 const Modal = ({ closeModal, addNewItem, currentItems }) => {
   const [newPerson, setNewPerson] = useState({
     name: "",
     email: "",
     gender: "",
-    status: true,
+    status: "",
     id: 0,
   })
 
@@ -16,29 +20,42 @@ const Modal = ({ closeModal, addNewItem, currentItems }) => {
     setNewPerson({ ...newPerson, [name]: value })
   }
 
-  const addItem = (e) => {
-    e.preventDefault()
-    if (newPerson.name && newPerson.email && newPerson.gender) {
-      const person = {
-        name: newPerson.name,
-        email: newPerson.email,
-        gender: newPerson.gender,
-        status: newPerson.status,
-        id: new Date().getTime().toString(),
-      }
-      addNewItem([person, ...currentItems])
-      setNewPerson({
-        name: "",
-        email: "",
-        gender: "",
-        status: true,
-        id: 0,
-      })
-      closeModal(false)
+  const addItem = async (e) => {
+    const person = {
+      name: newPerson.name,
+      email: newPerson.email,
+      gender: newPerson.gender,
+      status: newPerson.status,
+      id: new Date().getTime().toString(),
     }
+    addNewItem([person, ...currentItems])
+    setNewPerson({
+      name: "",
+      email: "",
+      gender: "",
+      status: true,
+      id: 0,
+    })
+    closeModal(false)
   }
 
-  console.log(newPerson)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  })
+
+  register("name", {
+    onChange: handleChange,
+  })
+  register("email", {
+    onChange: handleChange,
+  })
+  register("status", {
+    onChange: handleChange,
+  })
 
   return (
     <div className="modalBackground">
@@ -55,23 +72,25 @@ const Modal = ({ closeModal, addNewItem, currentItems }) => {
           </a>
         </div>
         <div className="modalBody">
-          <form onSubmit={addItem}>
+          <form onSubmit={handleSubmit(addItem)}>
             <label htmlFor="name">Name</label>
             <input
               id="name"
               name="name"
               value={newPerson.name}
               type="text"
-              onChange={handleChange}
+              {...register("name")}
             />
+            <p>{errors?.name?.message}</p>
             <label htmlFor="email">E-mail</label>
             <input
               id="email"
               name="email"
               value={newPerson.email}
               type="text"
-              onChange={handleChange}
+              {...register("email")}
             />
+            <p>{errors?.email?.message}</p>
             <label htmlFor="gender">Genero</label>
             <input
               id="gender"
@@ -86,11 +105,13 @@ const Modal = ({ closeModal, addNewItem, currentItems }) => {
               name="status"
               value={newPerson.status}
               type="text"
-              onChange={handleChange}
+              {...register("status")}
             >
+              <option value="">Selecione o status</option>
               <option value="active">ativo</option>
               <option value="inactive">Inativo</option>
             </select>
+            <p>{errors?.status?.message}</p>
             <button type="submit">Adicionar</button>
           </form>
         </div>
