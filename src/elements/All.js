@@ -1,12 +1,15 @@
 import React from "react"
 import { useState } from "react"
-import response from "./response.json"
+import { useFetch } from "../Hooks/useFetch"
+
+const url = "https://gorest.co.in/public/v2/users"
 
 const All = () => {
   const [search, setSearch] = useState("")
   const [activeFilter, setActiveFilter] = useState("all")
+  const { loading, items } = useFetch(url)
 
-  let filteredResponse = response
+  let filteredResponse = items
     .filter((person) => {
       if (search == "") {
         return person
@@ -44,18 +47,22 @@ const All = () => {
             <option value="inactive">Inativo</option>
           </select>
         </div>
-        <motion.div>
-          {filteredResponse.map((person, key) => {
-            return (
-              <div key={key}>
-                <h5>{person.name}</h5>
-                <h5>{person.email}</h5>
-                <h5>{person.gender}</h5>
-                <h5>{person.status}</h5>
-              </div>
-            )
-          })}
-        </motion.div>
+        {loading ? (
+          <h2>Loading</h2>
+        ) : (
+          <div>
+            {filteredResponse.map((person, key) => {
+              return (
+                <div key={key}>
+                  <h5>{person.name}</h5>
+                  <h5>{person.email}</h5>
+                  <h5>{person.gender}</h5>
+                  <h5>{person.status}</h5>
+                </div>
+              )
+            })}
+          </div>
+        )}
       </section>
     </>
   )
