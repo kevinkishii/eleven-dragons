@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 
 import Navbar from "./Components/Navbar"
 import Home from "./Components/Home"
-import All from "./Components/All"
+import Users from "./Components/Users"
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/all" element={<All />} />
+        <Route exact path="/Users" element={<Users />} />
       </Routes>
     </Router>
   )

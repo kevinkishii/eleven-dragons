@@ -7,7 +7,7 @@ export const schema = yup.object().shape({
     .max(20, "O nome deve ser entre 4 a 20 caracteres")
     .matches(
       /\w+/,
-      "O nome deve somente ter caracteres alfanuméricos e underscore."
+      "O nome deve ter somente caracteres alfanuméricos e/ou underscore."
     )
     .required("favor colocar um nome"),
   email: yup

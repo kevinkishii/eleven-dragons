@@ -3,7 +3,6 @@ import "./Modal.css"
 import { schema } from "./validation"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
-import * as yup from "yup"
 
 const Modal = ({ closeModal, addNewItem, currentItems }) => {
   const [newPerson, setNewPerson] = useState({
@@ -61,7 +60,7 @@ const Modal = ({ closeModal, addNewItem, currentItems }) => {
     <div className="modalBackground">
       <div className="modalContainer">
         <div className="modalHeader">
-          <h3>Modal</h3>
+          <div></div>
           <a
             onClick={() => {
               closeModal(false)
@@ -73,46 +72,62 @@ const Modal = ({ closeModal, addNewItem, currentItems }) => {
         </div>
         <div className="modalBody">
           <form onSubmit={handleSubmit(addItem)}>
-            <label htmlFor="name">Name</label>
-            <input
-              id="name"
-              name="name"
-              value={newPerson.name}
-              type="text"
-              {...register("name")}
-            />
-            <p>{errors?.name?.message}</p>
-            <label htmlFor="email">E-mail</label>
-            <input
-              id="email"
-              name="email"
-              value={newPerson.email}
-              type="text"
-              {...register("email")}
-            />
-            <p>{errors?.email?.message}</p>
-            <label htmlFor="gender">Genero</label>
-            <input
-              id="gender"
-              name="gender"
-              value={newPerson.gender}
-              type="text"
-              onChange={handleChange}
-            />
-            <label htmlFor="status">Status</label>
-            <select
-              id="status"
-              name="status"
-              value={newPerson.status}
-              type="text"
-              {...register("status")}
-            >
-              <option value="">Selecione o status</option>
-              <option value="active">ativo</option>
-              <option value="inactive">Inativo</option>
-            </select>
-            <p>{errors?.status?.message}</p>
-            <button type="submit">Adicionar</button>
+            <div>
+              <div className="formElement">
+                <div>
+                  <label htmlFor="name">Name</label>
+                </div>
+                <div>
+                  <input
+                    id="name"
+                    name="name"
+                    value={newPerson.name}
+                    type="text"
+                    {...register("name")}
+                  />
+                  <p>{errors?.name?.message}</p>
+                </div>
+              </div>
+              <div className="formElement">
+                <div>
+                  <label htmlFor="email">E-mail</label>
+                </div>
+                <div>
+                  <input
+                    id="email"
+                    name="email"
+                    value={newPerson.email}
+                    type="text"
+                    {...register("email")}
+                  />
+                  <p>{errors?.email?.message}</p>
+                </div>
+              </div>
+              <div className="formElement">
+                <div>
+                  <label htmlFor="status">Status</label>
+                </div>
+                <div>
+                  <select
+                    id="status"
+                    name="status"
+                    value={newPerson.status}
+                    type="text"
+                    {...register("status")}
+                  >
+                    <option value="">Selecione o status</option>
+                    <option value="active">ativo</option>
+                    <option value="inactive">Inativo</option>
+                  </select>
+                  <p>{errors?.status?.message}</p>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <button type="submit">Adicionar</button>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>

@@ -1,32 +1,122 @@
 .modalBackground {
-  width: 100vw;
-  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   position: fixed;
   display: flex;
   justify-content: center;
+  backdrop-filter: blur(5px);
 }
 
 .modalContainer {
+  display: inline-block;
+  vertical-align: middle;
+  margin: auto;
   height: fit-content;
   width: auto;
   border-radius: 12px;
-  background-color: white;
-  box-shadow: black 0px 5px 15px;
+  background-color: #303030;
   display: flex;
   flex-direction: column;
 }
 
+.modalContainer:before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+}
+
 .modalHeader {
-  padding: 0.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
   height: 3rem;
   display: flex;
   flex-direction: row;
   place-content: space-between;
-  align-items: center;
-  background-color: cyan;
+  align-items: right;
   border-radius: 12px 12px 0 0;
 }
 
+.modalHeader a {
+  cursor: pointer;
+}
+
 .modalBody {
-  padding: 3rem;
+  padding: 2rem;
+  padding-top: 0rem;
+}
+
+.formElement {
+  display: flex;
+  flex-direction: row;
+}
+
+.formElement > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1.5rem;
+  padding: 0.2rem;
+}
+
+.formElement p {
+  color: red;
+}
+
+.modalBody select,
+.modalBody input {
+  background-color: #ffde59;
+  width: 20rem;
+  height: 3rem;
+  border-radius: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.modalBody option {
+  border-radius: 5rem;
+}
+
+.modalBody label {
+  font-size: 5em;
+  font-weight: bold;
+}
+
+.formElement > div:only-child {
+  text-align: center;
+}
+
+.modalBody button {
+  background-color: black;
+  color: #ffde59;
+  padding: 1rem 5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 5rem;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+  .formElement {
+    flex-direction: column;
+  }
+  .formElement > div {
+    margin: 1rem;
+  }
+
+  .modalBody label {
+    font-size: 3rem;
+  }
+
+  .modalBody select,
+  .modalBody input {
+    width: 15rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
 }

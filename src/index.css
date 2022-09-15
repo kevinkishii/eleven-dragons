@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+
 html {
   height: 100%;
 }
@@ -5,9 +7,12 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Montserrat";
+  font-family: "Quicksand";
   min-height: 100%;
   position: relative;
+  background-color: black;
+  color: white;
+  line-height: 1rem;
 }
 
 img {
@@ -17,8 +22,8 @@ img {
 }
 
 header {
-  background-color: black;
-  padding: 1.5rem;
+  background-color: #303030;
+  padding: 0 1rem;
   display: flex;
   flex-direction: row;
   place-content: space-between;
@@ -46,6 +51,30 @@ div.hero {
   display: flex;
   justify-content: space-around;
   text-align: center;
+  line-height: 2rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 0;
+}
+
+.columnHalf {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.columnHalf:nth-of-type(1) {
+  justify-content: right;
+  margin-right: 0.5rem;
+}
+
+.columnHalf:nth-of-type(2) {
+  justify-content: left;
 }
 
 .displayHeader {
@@ -53,11 +82,35 @@ div.hero {
   flex-direction: row;
   place-content: space-between;
   align-items: center;
-  padding: 1rem;
+}
+
+.displayHeader input,
+.displayHeader select,
+.displayHeader button {
+  background-color: #ffde59;
+  height: 2rem;
+  margin-right: 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  font-weight: bold;
 }
 
 .displayHeader input {
-  margin-right: 2rem;
+  width: 20rem;
+}
+
+.displayHeader select {
+  width: 7rem;
+}
+
+.displayHeader button {
+  width: 10rem;
+  border-radius: 5rem;
+}
+
+.displayHeader button:hover {
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .itemsGrid {
@@ -68,9 +121,44 @@ div.hero {
 .item {
   margin: 1rem;
   padding: 1rem;
-  background-color: rgb(174, 122, 223);
+  border-style: solid;
+  border-color: #ffde59;
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
   text-align: center;
+}
+
+td:nth-of-type(1) {
+  text-align: right;
+}
+
+.item td:nth-of-type(1) {
+  border-right: 1rem solid black;
+}
+
+.item td:nth-of-type(2) {
+  text-align: left;
+  word-break: break-all;
+  font-size: 1.3rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .displayHeader {
+    flex-direction: column;
+  }
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filters input,
+  .filters select,
+  .filters button {
+    margin-top: 1rem;
+    width: 18rem;
+  }
 }

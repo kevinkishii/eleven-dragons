@@ -1,18 +1,16 @@
 import React from "react"
 import { useState } from "react"
 import { useFetch } from "../Hooks/useFetch"
-import { motion } from "framer-motion"
 
 import Modal from "./Modal"
 
 const url = "https://gorest.co.in/public/v2/users"
 
-const All = () => {
+const Users = () => {
   const [search, setSearch] = useState("")
   const [activeFilter, setActiveFilter] = useState("all")
   const { loading, items, setItems } = useFetch(url)
   const [openModal, setOpenModal] = useState(false)
-  console.log(items)
 
   let filteredResponse = items
     .filter((person) => {
@@ -45,8 +43,8 @@ const All = () => {
           />
         )}
         <div className="displayHeader">
-          <h1>Todos os usuários</h1>
-          <div>
+          <h1 style={{ fontWeight: "bold", fontSize: "5rem" }}>Usuários</h1>
+          <div className="filters">
             <input
               type="text"
               placeholder="Pesquisar por Nome"
@@ -77,43 +75,44 @@ const All = () => {
             <h2>Carregando</h2>
           </div>
         ) : (
-          <motion.div className="itemsGrid">
+          <div className="itemsGrid">
             {filteredResponse.map((person, key) => {
               return (
-                <motion.div
-                  animate={{
-                    scale: 1,
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  inicial={{
-                    scale: 0,
-                    opacity: 0,
-                    y: "50%",
-                  }}
-                  exit={{
-                    scale: 0,
-                  }}
-                  transition={{
-                    duration: 1,
-                    ease: "easeInOut",
-                  }}
-                  layout
-                  className="item"
-                  key={key}
-                >
-                  <h5>{person.name}</h5>
-                  <h5>{person.email}</h5>
-                  <h5>{person.gender}</h5>
-                  <h5>{person.status}</h5>
-                </motion.div>
+                <div className="item" key={key}>
+                  <table>
+                    <tr>
+                      <td>
+                        <h1>NOME</h1>
+                      </td>
+                      <td>
+                        <h5>{person.name}</h5>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h1>EMAIL</h1>
+                      </td>
+                      <td>
+                        <h5>{person.email}</h5>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h1>STATUS</h1>
+                      </td>
+                      <td>
+                        <h5>{person.status}</h5>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
               )
             })}
-          </motion.div>
+          </div>
         )}
       </div>
     </>
   )
 }
 
-export default All
+export default Users

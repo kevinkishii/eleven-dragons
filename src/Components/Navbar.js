@@ -6,12 +6,12 @@ const Navbar = () => {
     <>
       <header>
         <Link className="link" to="/">
-          Home
+          <h1>Home</h1>
         </Link>
         <ul>
           <li>
-            <Link className="link" to="/all">
-              Usuarios
+            <Link className="link" to="/Users">
+              <h3>Usuários</h3>
             </Link>
           </li>
         </ul>
